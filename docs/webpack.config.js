@@ -16,7 +16,7 @@ module.exports = (env, argv) => ({
 
   },
   //監視有効
-  watch: true,
+  //watch: true, -> webpack-cli のアップデート（3.x.x -> 4.x.x）によりこのオプションは不要となる
   //開発用サーバー
   devServer:{
     contentBase: path.resolve(__dirname, './'),
