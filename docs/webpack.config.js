@@ -1,3 +1,4 @@
+// https://coinbaby8.com/javascriptes6-webpack-babel.html を基に設定
 const path = require('path');
 
 module.exports = (env, argv) => ({
@@ -49,11 +50,6 @@ module.exports = (env, argv) => ({
               ]
             }
           }
-      },
-      { // 拡張子 .glsl .vert .frag の場合
-        test: /\.(glsl|vert|frag)$/,
-        // webpack向けglsl-loaderを利用する
-        loader: [ 'raw-loader', 'webpack-glsl-loader' ]
       }
     ]
 
