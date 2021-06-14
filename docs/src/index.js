@@ -45,7 +45,7 @@ function outputResultToConsole(manupulateDom, attribute) {
 //------------------------------------------------------------------------------------------
 // DOM の Name 属性と投稿文に使う質問文を結びつけた Map を返す
 //-----------------------------------------------------------------------------------------
-function linktNameToQuestionaire() {
+function linkNameToQuestionaire() {
   let nameToQuestionaire = new Map();
   // let postLogAlertText = '';
   if (document.documentElement.lang == 'ja') {
@@ -362,7 +362,7 @@ function checkDiscordLimit(postsText) {
   document.getElementById('postBuildLogAlert').style.visibility = 'hidden';
   document.getElementById("resetBtn").addEventListener("click", (e) => document.forms["form"].reset()); 
   generateKeyboardList();
-  const nameToQuestionaire = linktNameToQuestionaire();
+  const nameToQuestionaire = linkNameToQuestionaire();
   setupClipboardJS();
 
   //------------------------------------------------------------------------------------------
