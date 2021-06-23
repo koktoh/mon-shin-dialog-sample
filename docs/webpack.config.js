@@ -1,3 +1,4 @@
+// https://coinbaby8.com/javascriptes6-webpack-babel.html を基に設定
 const path = require('path');
 
 module.exports = (env, argv) => ({
@@ -13,10 +14,12 @@ module.exports = (env, argv) => ({
     //  出力ファイルのディレクトリ名
     path: path.resolve(__dirname, 'dist'),
     publicPath: "/dist/",
-
   },
+  // ソースマップの設定
+  // [webpack-dev-server で Chrome DevTools にエラーが出る - Qiita](https://qiita.com/YoshinoriKanno/items/322ae6e53daa35059c15)
+  devtool: 'eval-source-map',
   //監視有効
-  watch: true,
+  //watch: true, -> webpack-cli のアップデート（3.x.x -> 4.x.x）によりこのオプションは不要となる
   //開発用サーバー
   devServer:{
     contentBase: path.resolve(__dirname, './'),
@@ -49,11 +52,6 @@ module.exports = (env, argv) => ({
               ]
             }
           }
-      },
-      { // 拡張子 .glsl .vert .frag の場合
-        test: /\.(glsl|vert|frag)$/,
-        // webpack向けglsl-loaderを利用する
-        loader: [ 'raw-loader', 'webpack-glsl-loader' ]
       }
     ]
 
