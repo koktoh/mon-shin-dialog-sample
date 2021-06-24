@@ -4,7 +4,7 @@ const path = require('path');
 module.exports = (env, argv) => ({
   // モードが production だと最適化された状態で、
   // development だとソースマップ有効でJSファイルが出力される
-
+  mode: 'production',
   // メインとなるJavaScriptファイル（エントリーポイント）
   entry: ['@babel/polyfill', './src/index.js', './src/closest.js' ],
   // ファイルの出力設定
@@ -38,8 +38,8 @@ module.exports = (env, argv) => ({
       {
         // 拡張子 .js の場合
         test: /\.js$/,
-        // node_modulesは対象外にしておく
-        exclude: /node_modules/,
+        // dark-mode-switch をバンドルするため node_modules を除外しない。
+//        exclude: /node_modules/,
         use: 
           {
             // Babel を利用する
@@ -52,8 +52,22 @@ module.exports = (env, argv) => ({
               ]
             }
           }
+      },
+      {
+        test: /\.css$/,
+        // dark-mode-switch の CSS をバンドルするため node_modules を除外しない。
+        // exclude: /node_modules/,
+        // loaderを複数使用するときは use を使う
+        use: [
+          'style-loader',
+          {
+            loader: 'css-loader',
+            options: {
+              importLoaders: 2,
+            }
+          }
+        ]
       }
     ]
-
   }
 });
