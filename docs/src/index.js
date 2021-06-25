@@ -54,16 +54,10 @@ function linkNameToQuestionaire() {
     nameToQuestionaireJP.forEach((value, key) => {
       nameToQuestionaire.set(key, value);
     });
-    nameToQuestionaire.set('postWriteToolLogAlert', '\n*※ファームウェア書き込み時のログを別途投稿します*')
-    nameToQuestionaire.set('postBuildLogAlert', '\n*※ファームウェアビルド時のログを別途投稿します*')
-    nameToQuestionaire.set('postEnvironmentLogAlert', '\n*※ビルド環境構築時のログを別途投稿します*')
   } else if (document.documentElement.lang == 'en') {
     nameToQuestionaireEN.forEach((value, key) => {
       nameToQuestionaire.set(key, value);
     });
-    nameToQuestionaire.set('postWriteToolLogAlert', '\n*※I will post firmware writing tool log separetely.*')
-    nameToQuestionaire.set('postBuildLogAlert', '\n*※I will post firmware build log separetely.*')
-    nameToQuestionaire.set('postEnvironmentLogAlert', '\n*※I will post build environment log separetely.*')
   }
   return nameToQuestionaire;
 }
@@ -232,6 +226,7 @@ function linkProblemAndTextbox(e) {
     case 'notExpect':
     case 'notActionOneHand':
     case 'ledOff':
+    case 'pointerDeviceProblem':
     case 'otherProblem':
       toggleDomDisabled(relationTextarea, !e.target.checked, DEBUG_MODE);
       break;
@@ -263,18 +258,10 @@ function generatePostText(nameToQuestionaire) {
   let userText = '';
 
   postsText.value = '';
-
   for (let key of form_data.keys()) {
+    // console.log(form_data.get(key));
     if (nameToQuestionaire.has(key)) {
-      if (key === 'writeErrorQmk') {
-        userText = '__**' + nameToQuestionaire.get(key) + '**__\n' +  form_data.get(key) + nameToQuestionaire.get('postWriteToolLogAlert');
-      } else if (key === 'buildErrorQmk') {
-        userText = '__**' + nameToQuestionaire.get(key) + '**__\n' +  form_data.get(key) + nameToQuestionaire.get('postBuildLogAlert');
-      } else if (key === 'environmentErrorQmk') {
-        userText = '__**' + nameToQuestionaire.get(key) + '**__\n' +  form_data.get(key) + nameToQuestionaire.get('postEnvironmentLogAlert');
-      } else {
-        userText = '__**' + nameToQuestionaire.get(key) + '**__\n' +  form_data.get(key);
-      }
+      userText = '__**' + nameToQuestionaire.get(key) + '**__\n' +  form_data.get(key);
       postsText.value += userText + "\n\n";
     }
   }
