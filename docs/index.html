@@ -240,7 +240,8 @@
           <div class="mb-3 form-check">
             <input class="form-check-input" type="checkbox" name="noInput" id="noInput" value="入力できないキーがある" data-relation-textarea="noInputTextarea" data-relation-label="postPhotoKeySwitch">
             <label class="form-check-label" for="noInput">入力できないキーがある</label>
-            <textarea class="mt-2 mb-2 form-control" name="noInputTextarea" id="noInputTextarea" rows="3" placeholder="入力できないキーの説明" disabled></textarea>
+            <p class="mt-1 mb-0 text-secondary">どのキーが入力できないか記入してください</p>
+            <textarea class="mt-0 mb-2 form-control" name="noInputTextarea" id="noInputTextarea" rows="3" disabled></textarea>
             <div>
               <label for="writingToolLog" id="postPhotoKeySwitch" class="m-0 p-1 alert alert-warning sr-only sr-only-focusable" role="alert">反応しないキーの半田付けの写真も別途投稿してください</label>
             </div>
@@ -248,17 +249,20 @@
           <div class="mb-3 form-check">
             <input class="form-check-input" type="checkbox" name="notExpect" id="notExpect" value="設定と異なる反応をするキーがある" data-relation-textarea="notExpectTextarea">
             <label class="form-check-label" for="notExpect">設定と異なる反応をするキーがある</label>
-            <textarea class="mt-2 mb-2 form-control" name="notExpectTextarea" id="notExpectTextarea" rows="3" placeholder="設定と異なるキーの状況" disabled></textarea>
+            <p class="mt-1 mb-0 text-secondary">設定上の動作と実際の動作を入力してください</p>
+            <textarea class="mt-2 mb-2 form-control" name="notExpectTextarea" id="notExpectTextarea" rows="3" disabled></textarea>
           </div>
           <div class="mb-3 form-check">
             <input class="form-check-input" type="checkbox" name="notActionOneHand" id="notActionOneHand" value="左右分離型で片方だけ反応しない" data-relation-textarea="notActionOneHandTextarea" disabled>
             <label class="form-check-label" for="notActionOneHand">左右分離型で片方だけ反応しない</label>
-            <textarea class="mt-2 mb-2 form-control" name="notActionOneHandTextarea" id="notActionOneHandTextarea" rows="3" placeholder="左右のどちらをPCに接続しているか、左右のどちらが反応しないか。" disabled></textarea>
+            <p class="mt-1 mb-0 text-secondary">左右のどちらをPCに接続しているか、左右のどちらが反応しないかを入力してください。</p>
+            <textarea class="mt-2 mb-2 form-control" name="notActionOneHandTextarea" id="notActionOneHandTextarea" rows="3" disabled></textarea>
           </div>
           <div class="mb-3 form-check">
             <input class="form-check-input" type="checkbox" name="ledOff" id="ledOff" value="左右分離型で片方だけ反応しない" data-relation-textarea="ledOffTextarea" data-relation-label="postPhotoLED">
             <label class="form-check-label" for="ledOff">LEDが点灯しない</label>
-            <textarea class="mt-2 mb-2 form-control" name="ledOffTextarea" id="ledOffTextarea" rows="3" placeholder="点灯しないLEDの箇所" disabled></textarea>
+            <p class="mt-1 mb-0 text-secondary">どのLEDが点灯しないか入力してください</p>
+            <textarea class="mt-2 mb-2 form-control" name="ledOffTextarea" id="ledOffTextarea" rows="3" disabled></textarea>
             <div>
               <label for="writingToolLog" id="postPhotoLED" class="m-0 p-1 alert alert-warning sr-only sr-only-focusable" role="alert">点灯しないLEDの半田付けの写真も別途投稿してください</label>
             </div>
@@ -266,7 +270,8 @@
           <div class="mb-3 form-check">
             <input class="form-check-input" type="checkbox" name="pointerDeviceProblem" id="pointerDeviceProblem" value="ポインターデバイス（トラックボール etc）の問題" data-relation-textarea="pointerDeviceProblemTextarea">
             <label class="form-check-label" for="pointerDeviceProblem">ポインターデバイス（トラックボール etc）の問題</label>
-            <textarea class="mt-2 mb-2 form-control" name="pointerDeviceProblemTextarea" id="pointerDeviceProblemTextarea" rows="3" placeholder="問題の内容" disabled></textarea>
+            <p class="mt-1 mb-0 text-secondary">どんな問題が発生しているか入力してください</p>
+            <textarea class="mt-2 mb-2 form-control" name="pointerDeviceProblemTextarea" id="pointerDeviceProblemTextarea" rows="3" disabled></textarea>
           </div>
           <div class="mb-3 form-check">
             <input class="form-check-input" type="checkbox" name="writeErrorQmk" id="writeErrorQmk" value="該当します" data-relation-label="postWriteToolLogAlert">
@@ -292,6 +297,7 @@
           <div class="mb-3 form-check">
             <input class="form-check-input" type="checkbox" name="otherProblem" id="otherProblem" value="上記以外の問題（ランドが剥がれた etc）が起きている" data-relation-textarea="otherProblemTextarea">
             <label class="form-check-label" for="otherProblem">上記以外の問題（ランドが剥がれた etc）</label>
+            <p class="mt-1 mb-0 text-secondary">どんな問題が発生しているか入力してください</p>
             <textarea class="mt-2 mb-2 form-control" name="otherProblemTextarea" id="otherProblemTextarea" rows="3" disabled></textarea>
           </div>
         </div>

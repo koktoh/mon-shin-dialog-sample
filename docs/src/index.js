@@ -8,7 +8,7 @@ import 'dark-mode-switch/dark-mode.css'
 //------------------------------------------------------------------------------------------
 // DOM の 使用可否等を切り替えて、その結果を Console に出力する関数群
 //-----------------------------------------------------------------------------------------
-const DEBUG_MODE = true;  //デバッグ完了後に false に変更
+const DEBUG_MODE = false;  //デバッグ完了後に false に変更
 function toggleDomDisabled(manupulateDom, toggle, outputResult=false) {
   toggleDomAttribute(manupulateDom, toggle, 'disabled', outputResult);
 }
