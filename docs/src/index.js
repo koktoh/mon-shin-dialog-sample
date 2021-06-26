@@ -192,25 +192,19 @@ function wiringMethodLinked(e) {
 // 選択したOSに応じてテキストボックスの使用可否を切り替える
 //-----------------------------------------------------------------------------------------
 function linkOsNameAndTextbox(e) {
-  // Checkboxに応じて使用可否を切り替えるTextboxは、並列関係にあるので、
-  // 一旦親要素を取得して、その親要素に含まれるDOM要素として取得している。
-  const parentFormGroupDiv = e.target.closest('.form-group');
-  const inputList = parentFormGroupDiv.querySelectorAll('.form-control');
-  // WSL2の使用を尋ねるチェックボックスは、個別にDOM操作する必要がある。
-  const WSL2Checkbox = document.getElementById('WSL2Checkbox');
-  for (const input of inputList) {
-    // 使用可能にする必要があるテキストボックスの`name`には、選択したOSの名前を含めている。
-    if (input.name.includes(e.target.id)) {
-      if (input.name.includes('windows')) {
-        toggleDomDisabled(WSL2Checkbox, false, DEBUG_MODE);
-      } else {
-        toggleDomDisabled(WSL2Checkbox, true, DEBUG_MODE);
-        WSL2Checkbox.checked = false;
-      }
-      toggleDomDisabled(input, false, DEBUG_MODE);
+  // データ属性には文字列しか格納できないので、配列にする変換する必要がある。
+  const activateDomIds = e.target.dataset.activateDom.replace(/\s/g, '').split(',');
+  const disabledDomIds = e.target.dataset.disabledDom.replace(/\s/g, '').split(',');
+  for(let activateDomId of activateDomIds) {
+    toggleDomDisabled(document.getElementById(activateDomId), false, DEBUG_MODE);
+  }
+  for(let disabledDomId of disabledDomIds) {
+    let disabledDom = document.getElementById(disabledDomId)
+    toggleDomDisabled(disabledDom, true, DEBUG_MODE);
+    if (disabledDom.id == 'WSL2Checkbox') {
+      disabledDom.checked = false;
     } else {
-      toggleDomDisabled(input, true, DEBUG_MODE);
-      input.value = "";
+      disabledDom.value = '';
     }
   }
 }
@@ -223,9 +217,9 @@ function linkProblemAndTextbox(e) {
   const relationTextarea = document.getElementById(e.target.dataset.relationTextarea);
   switch (e.target.id) {
     case 'noInput':
+    case 'ledOff':
     case 'notExpect':
     case 'notActionOneHand':
-    case 'ledOff':
     case 'pointerDeviceProblem':
     case 'otherProblem':
       toggleDomDisabled(relationTextarea, !e.target.checked, DEBUG_MODE);
@@ -236,14 +230,39 @@ function linkProblemAndTextbox(e) {
 }
 
 //------------------------------------------------------------------------------------------
-// ファームウェア書き込み時、ビルド時及び環境構築時のログも投稿するよう指示するメッセージを表示する
+// 写真やログも投稿するよう指示するメッセージを表示する
 //-----------------------------------------------------------------------------------------
 function displayPostLogOrPhotoAlert(e) {
+  // 写真やログの投稿が必要な問題の checkbox の data-relation-label には、関係する label の ID を格納している。
+  // Copy ボタンの上にもログ投稿を促す注意喚起のアラートを表示する
+  // Copy ボタン上のアラートは2つだけなので、データセット属性を使わずに指定する。
+  const noInput = document.getElementById('noInput');
+  const ledOff = document.getElementById('ledOff');
+  const writeErrorQmk = document.getElementById('writeErrorQmk');
+  const buildErrorQmk = document.getElementById('buildErrorQmk');
+  const environmentErrorQmk = document.getElementById('environmentErrorQmk');
+  const postPhotoAlert = document.getElementById('postPhotoAlert');
+  const postLogAlert = document.getElementById('postLogAlert');
+  const postPhotoReminder = noInput.checked || ledOff.checked;
+  const postLogReminder = writeErrorQmk.checked || buildErrorQmk.checked || environmentErrorQmk.checked;
   const relationLabel = document.getElementById(e.target.dataset.relationLabel);
+
   if (e.target.checked) {
     relationLabel.classList.remove('sr-only', 'sr-only-focusable');
+    if (postPhotoReminder) {
+      postPhotoAlert.classList.remove('sr-only', 'sr-only-focusable');
+    }
+    if (postLogReminder) {
+      postLogAlert.classList.remove('sr-only', 'sr-only-focusable');
+    }
   } else {
     relationLabel.classList.add('sr-only', 'sr-only-focusable');
+    if (!(postPhotoReminder)) {
+      postPhotoAlert.classList.add('sr-only', 'sr-only-focusable');
+    }
+    if (!(postLogReminder)) {
+      postLogAlert.classList.add('sr-only', 'sr-only-focusable');
+    }
   }
 }
 

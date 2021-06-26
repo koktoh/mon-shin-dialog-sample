@@ -151,10 +151,10 @@
         </div>
 
         <h2 class="">PCの環境と書き込みツール</h2>
-        <div class="form-group rounded p-2 border bg-white">
+        <div id="osName" class="form-group rounded p-2 border bg-white">
           <label>OS</label>
           <div class="form-check">
-            <input class="form-check-input" type="radio" name="osName" id="windows" value="Windows">
+            <input class="form-check-input" type="radio" name="osName" id="windows" value="Windows" data-activate-dom="windowsVersionInput, WSL2Checkbox, windowsTerminalSoftInput" data-disabled-dom="macosVersionInput, linuxDistributionInput">
             <label class="form-check-label" for="windows">Windows</label>
           </div>
           <div class="form-group rounded p-2 border bg-white">
@@ -173,7 +173,7 @@
             <input class="form-control" type="text" name="windowsTerminalSoftInput" id="windowsTerminalSoftInput" disabled>
           </div>
           <div class="form-check">
-            <input class="form-check-input" type="radio" name="osName" id="macos" value="MacOS">
+            <input class="form-check-input" type="radio" name="osName" id="macos" value="MacOS" data-activate-dom="macosVersionInput" data-disabled-dom="windowsVersionInput, WSL2Checkbox, windowsTerminalSoftInput, linuxDistributionInput">
             <label class="form-check-label" for="macos">macos</label>
           </div>
           <div class="form-group rounded p-2 border bg-white">
@@ -181,7 +181,7 @@
             <input class="form-control" type="text" name="macosVersionInput" id="macosVersionInput" disabled>
           </div>
           <div class="form-check">
-            <input class="form-check-input" type="radio" name="osName" id="linux" value="Linux">
+            <input class="form-check-input" type="radio" name="osName" id="linux" value="Linux" data-activate-dom="linuxDistributionInput" data-disabled-dom="windowsVersionInput, WSL2Checkbox, windowsTerminalSoftInput, macosVersionInput">
             <label class="form-check-label" for="linux">linux</label>
           </div>
           <div class="form-group rounded p-2 border bg-white">
@@ -238,7 +238,7 @@
         <h2 class="">現在起きている問題</h2>
         <div class="form-group rounded p-2 border bg-white">
           <div class="mb-3 form-check">
-            <input class="form-check-input" type="checkbox" name="noInput" id="noInput" value="入力できないキーがある" data-relation-textarea="noInputTextarea" data-relation-label="postPhotoKeySwitch" data-trouble-category="physicalProblem">
+            <input class="form-check-input" type="checkbox" name="noInput" id="noInput" value="入力できないキーがある" data-relation-textarea="noInputTextarea" data-relation-label="postPhotoKeySwitch">
             <label class="form-check-label" for="noInput">入力できないキーがある</label>
             <textarea class="mt-2 mb-2 form-control" name="noInputTextarea" id="noInputTextarea" rows="3" placeholder="入力できないキーの説明" disabled></textarea>
             <div>
@@ -246,17 +246,17 @@
             </div>
           </div>
           <div class="mb-3 form-check">
-            <input class="form-check-input" type="checkbox" name="notExpect" id="notExpect" value="設定と異なる反応をするキーがある" data-relation-textarea="notExpectTextarea" data-trouble-category="physicalProblem">
+            <input class="form-check-input" type="checkbox" name="notExpect" id="notExpect" value="設定と異なる反応をするキーがある" data-relation-textarea="notExpectTextarea">
             <label class="form-check-label" for="notExpect">設定と異なる反応をするキーがある</label>
             <textarea class="mt-2 mb-2 form-control" name="notExpectTextarea" id="notExpectTextarea" rows="3" placeholder="設定と異なるキーの状況" disabled></textarea>
           </div>
           <div class="mb-3 form-check">
-            <input class="form-check-input" type="checkbox" name="notActionOneHand" id="notActionOneHand" value="左右分離型で片方だけ反応しない" data-relation-textarea="notActionOneHandTextarea" data-trouble-category="physicalProblem" disabled>
+            <input class="form-check-input" type="checkbox" name="notActionOneHand" id="notActionOneHand" value="左右分離型で片方だけ反応しない" data-relation-textarea="notActionOneHandTextarea" disabled>
             <label class="form-check-label" for="notActionOneHand">左右分離型で片方だけ反応しない</label>
             <textarea class="mt-2 mb-2 form-control" name="notActionOneHandTextarea" id="notActionOneHandTextarea" rows="3" placeholder="左右のどちらをPCに接続しているか、左右のどちらが反応しないか。" disabled></textarea>
           </div>
           <div class="mb-3 form-check">
-            <input class="form-check-input" type="checkbox" name="ledOff" id="ledOff" value="左右分離型で片方だけ反応しない" data-relation-textarea="ledOffTextarea" data-relation-label="postPhotoLED" data-trouble-category="physicalProblem">
+            <input class="form-check-input" type="checkbox" name="ledOff" id="ledOff" value="左右分離型で片方だけ反応しない" data-relation-textarea="ledOffTextarea" data-relation-label="postPhotoLED">
             <label class="form-check-label" for="ledOff">LEDが点灯しない</label>
             <textarea class="mt-2 mb-2 form-control" name="ledOffTextarea" id="ledOffTextarea" rows="3" placeholder="点灯しないLEDの箇所" disabled></textarea>
             <div>
@@ -264,33 +264,33 @@
             </div>
           </div>
           <div class="mb-3 form-check">
-            <input class="form-check-input" type="checkbox" name="pointerDeviceProblem" id="pointerDeviceProblem" value="ポインターデバイス（トラックボール etc）の問題" data-relation-textarea="pointerDeviceProblemTextarea" data-trouble-category="physicalProblem">
+            <input class="form-check-input" type="checkbox" name="pointerDeviceProblem" id="pointerDeviceProblem" value="ポインターデバイス（トラックボール etc）の問題" data-relation-textarea="pointerDeviceProblemTextarea">
             <label class="form-check-label" for="pointerDeviceProblem">ポインターデバイス（トラックボール etc）の問題</label>
             <textarea class="mt-2 mb-2 form-control" name="pointerDeviceProblemTextarea" id="pointerDeviceProblemTextarea" rows="3" placeholder="問題の内容" disabled></textarea>
           </div>
           <div class="mb-3 form-check">
-            <input class="form-check-input" type="checkbox" name="writeErrorQmk" id="writeErrorQmk" value="該当します" data-relation-label="postWriteToolLogAlert" data-trouble-category="firmwareProblem">
+            <input class="form-check-input" type="checkbox" name="writeErrorQmk" id="writeErrorQmk" value="該当します" data-relation-label="postWriteToolLogAlert">
             <label class="form-check-label" for="writeErrorQmk">ファームウェアを書き込めない</label>
             <div>
               <label for="writingToolLog" id="postWriteToolLogAlert" class="m-0 p-1 alert alert-warning sr-only sr-only-focusable" role="alert">質問文の投稿後に書き込みツールのログも別途投稿してください</label>
             </div>
           </div>
           <div class="mb-3 form-check">
-            <input class="form-check-input" type="checkbox" name="buildErrorQmk" id="buildErrorQmk" value="該当します" data-relation-label="postBuildLogAlert" data-trouble-category="firmwareProblem">
+            <input class="form-check-input" type="checkbox" name="buildErrorQmk" id="buildErrorQmk" value="該当します" data-relation-label="postBuildLogAlert">
             <label class="form-check-label" for="buildErrorQmk">ファームウェアをビルドできない</label>
             <div>
               <label for="buildLog" id="postBuildLogAlert" class="m-0 p-1 alert alert-warning sr-only sr-only-focusable" role="alert">質問文の投稿後にビルド時のログも別途投稿してください</label>
             </div>
           </div>
           <div class="mb-3 form-check">
-            <input class="form-check-input" type="checkbox" name="environmentErrorQmk" id="environmentErrorQmk" value="該当します" data-relation-label="postEnvironmentLogAlert" data-trouble-category="firmwareProblem">
+            <input class="form-check-input" type="checkbox" name="environmentErrorQmk" id="environmentErrorQmk" value="該当します" data-relation-label="postEnvironmentLogAlert">
             <label class="form-check-label" for="environmentErrorQmk">ファームウェアのビルド環境を構築できない</label>
             <div>
               <label for="environmentLog" id="postEnvironmentLogAlert" class="m-0 p-1 alert alert-warning sr-only sr-only-focusable" role="alert">質問文の投稿後にビルド環境構築時のログも別途投稿してください</label>
             </div>
           </div>
           <div class="mb-3 form-check">
-            <input class="form-check-input" type="checkbox" name="otherProblem" id="otherProblem" value="上記以外の問題（ランドが剥がれた etc）が起きている" data-relation-textarea="otherProblemTextarea" data-trouble-category="otherProblem">
+            <input class="form-check-input" type="checkbox" name="otherProblem" id="otherProblem" value="上記以外の問題（ランドが剥がれた etc）が起きている" data-relation-textarea="otherProblemTextarea">
             <label class="form-check-label" for="otherProblem">上記以外の問題（ランドが剥がれた etc）</label>
             <textarea class="mt-2 mb-2 form-control" name="otherProblemTextarea" id="otherProblemTextarea" rows="3" disabled></textarea>
           </div>
@@ -347,7 +347,13 @@
           <div id="replaceDom">
             <label id="announceLabel" for="result">以下の文章を Discord の #mon-shin チャンネルに投稿してください</label>
           </div>
-          <div class="form-group rounded">
+          <div>
+            <label id="postPhotoAlert" class="mt-1 mb-3 p-1 alert alert-warning sr-only sr-only-focusable" role="alert"><strong>写真も別途投稿してください</strong></label>
+          </div>
+          <div>
+            <label id="postLogAlert" class="mt-1 mb-3 p-1 alert alert-warning sr-only sr-only-focusable" role="alert"><strong>ログも別途投稿してください</strong></label>
+          </div>
+        <div class="form-group rounded">
             <input id="copyBtn" type="button" class="btn btn-primary" data-clipboard-target="#postsText" value="Copy">
           </div>
           <div class="form-group rounded">
