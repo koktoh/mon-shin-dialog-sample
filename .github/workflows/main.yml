@@ -10,7 +10,7 @@ jobs:
     steps:
     - uses: actions/checkout@v2
     - name: mkdir ./docs/dist
-      run: mkdir -p dist
+      run: mkdir -p ./docs/dist
     - name: Setup Node.js
       uses: actions/setup-node@v1
       with:
@@ -25,4 +25,4 @@ jobs:
       uses: peaceiris/actions-gh-pages@v3
       with:
         github_token: ${{ secrets.GITHUB_TOKEN }}
-        publish_dir: ./
+        publish_dir: ./docs
